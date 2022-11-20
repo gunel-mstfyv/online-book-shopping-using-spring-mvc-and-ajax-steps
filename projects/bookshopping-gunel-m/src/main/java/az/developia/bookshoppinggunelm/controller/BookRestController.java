@@ -12,7 +12,7 @@ import az.developia.bookshoppinggunelm.dao.BookDAO;
 import az.developia.bookshoppinggunelm.model.Book;
 
 @RestController
-@RequestMapping (path="/books")
+@RequestMapping (path="/rest/books")
 public class BookRestController {
 
 	@Autowired
