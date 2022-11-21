@@ -4,22 +4,39 @@
 <title>Books</title>
 
 <style>
-table,th,td{
-border:1px solid black;
-}
-table{
-border-collapse:collapse;
-width:100%;
-}
-
+table,th,td{border:3px solid green;}
+table{border-collapse:collapse;
+width:100%;}
+th{padding:5px;
+background-color:grey;}
+td{
+padding:5px;
+background-color:black;
+color:white;}
+td:hover{
+color:blue;
+cursor:pointer;}
+#new-book-button{
+display:block;
+padding:5px 10px;
+background-color:rgb(144, 217, 71);
+width:150px;
+border-radius:10px;
+text-align:center;
+text-decoration:none;}
+#new-book-button:hover{
+background-color:rgb(144, 217, 171);
+cursor:pointer;}
 </style>
 
 </head>
 <body>
+<a th:href="@{/books/new}" id="new-book-button">New Book</a>
+
 
 <table>
 <thead>
-<tr> <th>ID</th> <th>Name</th> </tr>
+<tr><th>ID</th><th>Name</th></tr>
 </thead>
 <tbody>
 	<tr th:each="book : ${books}">
