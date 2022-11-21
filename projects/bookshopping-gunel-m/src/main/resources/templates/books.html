@@ -28,20 +28,47 @@ text-decoration:none;}
 background-color:rgb(144, 217, 171);
 cursor:pointer;}
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<link rel="stylesheet" type="text/css"
+href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8"
+src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+
+<script>
+$(document).ready(function() {
+$('#books-table').DataTable();
+});
+</script>
 </head>
 <body>
 <a th:href="@{/books/new}" id="new-book-button">New Book</a>
 
-
-<table>
+<a th:href="@{/home}">Main Page</a>
+<table id="books-table">
 <thead>
-<tr><th>ID</th><th>Name</th></tr>
+<tr>
+
+<th>ID</th>
+<th>Name</th>
+<th>Description</th>
+<th>Price</th>
+<th>Author</th>
+<th>Page Count</th>
+<th>Image</th>
+
+</tr>
 </thead>
 <tbody>
 	<tr th:each="book : ${books}">
 	<td th:text="${book.id}"></td>
 	<td th:text="${book.name}"></td>
+	<td th:text="${book.description}"></td>
+	<td th:text="${book.price}"></td>
+	<td th:text="${book.author}"></td>
+	<td th:text="${book.pageCount}"></td>
+	<td th:text="${book.image}"></td>
 	</tr>
 </tbody>
 </table>

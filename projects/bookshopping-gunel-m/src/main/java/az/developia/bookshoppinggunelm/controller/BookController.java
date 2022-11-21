@@ -34,6 +34,8 @@ public class BookController {
 	
 	@PostMapping(path="/books/new-book-process")
 	public String saveBook(@ModelAttribute(name="book") Book book,Model model) {
+		book.setImage("book.jpg");
+		book.setUsername("gunel");
 		bookDAO.save(book);
 		List<Book> books = bookDAO.findAll();
 		model.addAttribute("books", books);
