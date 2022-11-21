@@ -10,6 +10,7 @@ margin:auto;}
 </style>
 </head>
 <body>
+<div th:replace="menu::menu"></div>
 <h1 style="text-align:center">New Book</h1>
 
 <form th:action="@{/books/new-book-process}" method="POST" th:object="${book}" id="book-register-form" >

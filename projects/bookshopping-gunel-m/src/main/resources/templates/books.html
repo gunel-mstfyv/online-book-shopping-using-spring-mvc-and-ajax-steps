@@ -43,6 +43,7 @@ $('#books-table').DataTable();
 </script>
 </head>
 <body>
+<div th:replace="menu::menu"></div>
 <a th:href="@{/books/new}" id="new-book-button">New Book</a>
 
 <a th:href="@{/home}">Main Page</a>

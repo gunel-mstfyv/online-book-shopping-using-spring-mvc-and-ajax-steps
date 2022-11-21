@@ -4,7 +4,9 @@
 <title>Home Page</title>
 </head>
 <body>
+<div th:replace="menu::menu"></div>
 <h1>Welcome to my Home Page</h1>
-<a th:href="@{/books}">List Of Books</a>
+<a th:href="@{/books}">List Of Books</a><br/>
+<a th:href="@{/logout}">Exit</a>
 </body>
 </html>
