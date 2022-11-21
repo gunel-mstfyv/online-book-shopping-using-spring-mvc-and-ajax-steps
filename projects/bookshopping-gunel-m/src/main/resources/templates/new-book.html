@@ -12,9 +12,12 @@ margin:auto;}
 </head>
 <body>
 <div th:replace="menu::menu"></div>
-<h1 style="text-align:center">New Book</h1>
+<h1 th:text="${header}" style="text-align: center;color: green;">New Book</h1>
 
 <form th:action="@{/books/new-book-process}" method="POST" th:object="${book}" id="book-register-form" >
+
+<input type="hidden" th:field="*{id}"/>
+
 <div class="form-group">
 <label for="book-name">Name:</label>
 <input class="form-control" id="book-name" th:field="*{name}"/>
@@ -39,7 +42,7 @@ margin:auto;}
 <label for="book-page-count">Page count:</label>
 <input class="form-control" type="number" id="book-page-count" th:field="*{pageCount}"/>
 </div>
-<input class="btn btn-success" type="submit" value="Registration" />
+<input class="btn btn-success" type="submit" value="Save" />
 </form>
 
 <a th:href="@{/books}">List Of Books</a>

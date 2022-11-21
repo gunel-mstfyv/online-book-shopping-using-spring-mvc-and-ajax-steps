@@ -28,6 +28,7 @@ text-decoration:none;}
 #new-book-button:hover{
 background-color:rgb(144, 217, 171);
 cursor:pointer;}
+a{margin-right:5px}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -59,6 +60,7 @@ $('#books-table').DataTable();
 <th>Author</th>
 <th>Page Count</th>
 <th>Image</th>
+<th>Operations</th>
 
 </tr>
 </thead>
@@ -71,6 +73,8 @@ $('#books-table').DataTable();
 	<td th:text="${book.author}"></td>
 	<td th:text="${book.pageCount}"></td>
 	<td th:text="${book.image}"></td>
+	<td> <a th:href="@{/books/delete/{id}(id=${book.id})}" class="btn btn-danger">Delete</a>
+		 <a th:href="@{/books/edit/{id}(id=${book.id})}" class="btn btn-primary">Edit</a> </td>
 	</tr>
 </tbody>
 </table>
