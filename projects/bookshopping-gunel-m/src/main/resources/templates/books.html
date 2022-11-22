@@ -4,32 +4,7 @@
 <meta charset="utf-8">
 <title>Books</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<style>
-table,th,td{border:3px solid green;}
-table{border-collapse:collapse;
-width:100%;}
-th{padding:5px;
-background-color:grey;}
-td{
-padding:5px;
-background-color:black;
-color:white;}
-td:hover{
-color:blue;
-cursor:pointer;}
-#new-book-button{
-display:block;
-padding:5px 10px;
-background-color:rgb(144, 217, 71);
-width:150px;
-border-radius:10px;
-text-align:center;
-text-decoration:none;}
-#new-book-button:hover{
-background-color:rgb(144, 217, 171);
-cursor:pointer;}
-a{margin-right:5px}
-</style>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <link rel="stylesheet" type="text/css"
@@ -46,10 +21,14 @@ $('#books-table').DataTable();
 </head>
 <body>
 <div th:replace="menu::menu"></div>
-<a th:href="@{/books/new}" id="new-book-button">New Book</a>
+<div class="container-fluid">
 
-<a th:href="@{/home}">Main Page</a>
-<table id="books-table">
+<a class="btn btn-success" th:href="@{/books/new}" id="new-book-button">New Book</a>
+
+<a class="btn btn-primary" th:href="@{/home}">Main Page</a>
+
+<div style="height:5px"></div>
+<table id="books-table" class="table table-hover table-bordered table-striped">
 <thead>
 <tr>
 
@@ -73,11 +52,14 @@ $('#books-table').DataTable();
 	<td th:text="${book.author}"></td>
 	<td th:text="${book.pageCount}"></td>
 	<td th:text="${book.image}"></td>
-	<td> <a th:href="@{/books/delete/{id}(id=${book.id})}" class="btn btn-danger">Delete</a>
+	<td> <a th:href="@{/books/delete/{id}(id=${book.id})}" class="btn btn-danger" 
+	th:onclick="if(!(confirm('Are you sure to delete the book?'))) return false">Delete</a>
 		 <a th:href="@{/books/edit/{id}(id=${book.id})}" class="btn btn-primary">Edit</a> </td>
+		 
+		
 	</tr>
 </tbody>
 </table>
-
+</div>
 </body>
 </html>
