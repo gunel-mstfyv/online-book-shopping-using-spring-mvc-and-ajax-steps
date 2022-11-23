@@ -1,7 +1,7 @@
 #main-content{
-border:3px solid black;
 overflow:auto;
-padding:10px;}
+padding:10px;
+background-color:lightblue;}
 .book-container{
 box-sizing:border-box;
 padding:10px;
@@ -38,7 +38,10 @@ width:100%;
 background-color:blue;
 }
 .book-name,.book-price,.book-description,.book-author,.book-page-count{
-display:block;
+display: block;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
 }
 .book-name::before{
 content: 'Name: ';}
@@ -55,4 +58,9 @@ text-align:center;
 margin-top:5px;}
 .book-image>img{
 	width:100%;
+}
+#open-basket{
+	position: fixed;
+	right: 20px;
+	bottom: 20px;
 }
