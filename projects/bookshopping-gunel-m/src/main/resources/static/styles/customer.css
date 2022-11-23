@@ -35,7 +35,6 @@ border-radius:7px;
 .book-image{
 display:block;
 width:100%;
-height:200px;
 background-color:blue;
 }
 .book-name,.book-price,.book-description,.book-author,.book-page-count{
@@ -54,3 +53,6 @@ content: 'Page Count: ';}
 .add-to-basket{
 text-align:center;
 margin-top:5px;}
+.book-image>img{
+	width:100%;
+}
