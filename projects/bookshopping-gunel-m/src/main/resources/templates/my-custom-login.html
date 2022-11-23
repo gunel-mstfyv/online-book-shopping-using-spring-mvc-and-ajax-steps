@@ -3,12 +3,25 @@
 <head>
 <meta charset="utf-8">
 <title>Login</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">  
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div th:replace="menu::menu"></div>
-<div class="container">
+<div style="width:300px;margin:auto;">
 <form th:action="@{/authenticate-user}" method="POST">
+
+<div th:if="${param.error}" class="alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+     Incorrect information!
+</div>
+
+<div th:if="${param.logout}" class="alert alert-success alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	You have successfully signed out!
+</div>
 
 <div class="form-group">
 <label for="username">User name</label>
