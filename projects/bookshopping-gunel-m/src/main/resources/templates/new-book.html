@@ -7,7 +7,11 @@
 <style>
 #book-register-form{
 width:300px;
-margin:auto;}
+margin:auto;
+}
+.error-message{
+color:red;
+}
 </style>
 </head>
 <body>
@@ -21,26 +25,31 @@ margin:auto;}
 <div class="form-group">
 <label for="book-name">Name:</label>
 <input class="form-control" id="book-name" th:field="*{name}"/>
+<span class="error-message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
 </div>
 
 <div class="form-group">
 <label for="book-description">Description:</label>
 <textarea class="form-control" id="book-description" th:field="*{description}"></textarea>
+<span class="error-message" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
 </div>
 
 <div class="form-group">
 <label for="book-price">Price:</label>
 <input class="form-control" type="number" id="book-price" th:field="*{price}"/>
+<span class="error-message" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
 </div>
 
 <div class="form-group">
 <label for="book-author">Author:</label>
 <input class="form-control" id="book-author" th:field="*{author}"/>
+<span class="error-message" th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></span>
 </div>
 
 <div class="form-group">
 <label for="book-page-count">Page count:</label>
 <input class="form-control" type="number" id="book-page-count" th:field="*{pageCount}"/>
+<span class="error-message" th:if="${#fields.hasErrors('pageCount')}" th:errors="*{pageCount}"></span>
 </div>
 <input class="btn btn-success" type="submit" value="Save" />
 </form>
