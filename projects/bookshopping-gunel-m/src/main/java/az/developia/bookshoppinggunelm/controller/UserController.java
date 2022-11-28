@@ -11,5 +11,9 @@ public class UserController {
 		return "my-custom-login";
 	}
 
-	
+	@GetMapping(path={"/create-account"})
+	public String showCreateAccountPage() {
+		return "create-account";
+	}
+
 }

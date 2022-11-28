@@ -18,7 +18,6 @@ public class MySession {
 private String username;
 
 public MySession() {
-    System.out.println("MySession>constructor");
 	Authentication loggerInUser =SecurityContextHolder.getContext().getAuthentication();
 	String username = loggerInUser.getName();
 	this.username=username;

@@ -13,7 +13,7 @@
 <body>
 <div th:replace="menu::menu"></div>
 <div style="width:300px;margin:auto;">
-<form th:action="@{/authenticate-user}" method="POST">
+<form th:action="@{/authenticate-user}" method="POST" class="form">
 
 <div th:if="${param.error}" class="alert alert-danger alert-dismissible">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -35,7 +35,8 @@
 <input class="form-control"  type="password" id="password" name="password" placeholder="password"/>
 </div>
 
-<button class="btn btn-success" type="submit">Enter</button>
+<button class="btn btn-success" type="submit">Login</button>
+<a class="btn btn-primary" th:href="@{/create-account}">Create Account</a>
 </form>
 
 </div>
