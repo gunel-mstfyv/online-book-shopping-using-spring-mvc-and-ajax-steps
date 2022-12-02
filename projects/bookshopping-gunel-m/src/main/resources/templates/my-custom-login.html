@@ -26,6 +26,11 @@
 	You have successfully signed out!
 </div>
 
+<div th:if="${userCreated}" class="alert alert-success alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	Account successfully created!
+</div>
+
 
 <div class="form-group">
 <label for="username">User name</label>
