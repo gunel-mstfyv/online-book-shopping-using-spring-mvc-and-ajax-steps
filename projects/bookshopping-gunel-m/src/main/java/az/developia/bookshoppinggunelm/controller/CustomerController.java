@@ -1,6 +1,5 @@
 package az.developia.bookshoppinggunelm.controller;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,20 +12,20 @@ import az.developia.bookshoppinggunelm.dao.BookDAO;
 import az.developia.bookshoppinggunelm.model.Book;
 
 @Controller
-public class CustomerController {	
-	
+public class CustomerController {
+
 	@Autowired
 	private BookDAO bookDAO;
-	
+
 	@Autowired
 	private MySession mySession;
-	
-	@GetMapping(path="/customer")
+
+	@GetMapping(path = "/customer")
 	public String showCustomerPage(Model model) {
 		List<Book> books = bookDAO.findAll();
 		model.addAttribute("books", books);
 		System.out.println(mySession.getUsername());
 		return "customer";
 	}
-	
+
 }

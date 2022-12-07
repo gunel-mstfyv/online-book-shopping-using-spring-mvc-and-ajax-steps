@@ -13,46 +13,44 @@ import az.developia.bookshoppinggunelm.model.User;
 
 @Component
 public class UserDAO {
-	
-@Autowired	
-private DataSource dataSource;
 
-public boolean createUser(User user) {
-	boolean userExists=false;
-	try {
-		Connection conn= dataSource.getConnection();
-		PreparedStatement ps = conn
-				.prepareStatement("select username from users where username=?");
-		ps.setString(1, user.getUsername());		
-		ResultSet rs = ps.executeQuery();
-		if(rs.next()) {
-			userExists=true;
-			rs.close();
-			ps.close();
+	@Autowired
+	private DataSource dataSource;
+
+	public boolean createUser(User user) {
+		boolean userExists = false;
+		try {
+			Connection conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement("select username from users where username=?");
+			ps.setString(1, user.getUsername());
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				userExists = true;
+				rs.close();
+				ps.close();
+			} else {
+				rs.close();
+				ps.close();
+				ps = conn.prepareStatement("insert into users (username,password,enabled) values (?,?,?);");
+				ps.setString(1, user.getUsername());
+				ps.setString(2, "{noop}" + user.getPassword());
+				ps.setByte(3, (byte) 1);
+				ps.executeUpdate();
+				ps.close();
+
+				ps = conn.prepareStatement("insert into authorities (username,authority) values (?,?);");
+				ps.setString(1, user.getUsername());
+				ps.setString(2, "ROLE_ADMIN");
+				ps.executeUpdate();
+				ps.close();
+
+			}
+
+			conn.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		else {
-			rs.close();
-			ps.close();
-			ps=conn.prepareStatement("insert into users (username,password,enabled) values (?,?,?);");
-			ps.setString(1, user.getUsername());
-			ps.setString(2, "{noop}" +user.getPassword());
-			ps.setByte(3, (byte)1);
-			ps.executeUpdate();
-			ps.close();
-			
-			ps=conn.prepareStatement("insert into authorities (username,authority) values (?,?);");
-			ps.setString(1, user.getUsername());
-			ps.setString(2, "ROLE_ADMIN");
-			ps.executeUpdate();
-			ps.close();
-			
-		}	
-		
-		conn.close();
-		
-	} catch (Exception e) {
-		e.printStackTrace();
+		return userExists;
 	}
-	return userExists;
-}
 }

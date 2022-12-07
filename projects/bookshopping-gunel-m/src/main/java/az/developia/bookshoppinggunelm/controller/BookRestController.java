@@ -12,20 +12,19 @@ import az.developia.bookshoppinggunelm.dao.BookDAO;
 import az.developia.bookshoppinggunelm.model.Book;
 
 @RestController
-@RequestMapping (path="/rest/books")
+@RequestMapping(path = "/rest/books")
 public class BookRestController {
 
 	@Autowired
 	private BookDAO bookDAO;
-	
-	
+
 	@GetMapping
-	public List<Book> findAll(){
+	public List<Book> findAll() {
 		return bookDAO.findAll();
 	}
-	
-	@GetMapping (path="/{id}")
-	public Book findById(@PathVariable(name="id") Integer id){
+
+	@GetMapping(path = "/{id}")
+	public Book findById(@PathVariable(name = "id") Integer id) {
 		return bookDAO.findById(id).get();
 	}
 }

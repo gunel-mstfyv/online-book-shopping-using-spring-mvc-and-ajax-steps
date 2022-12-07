@@ -21,33 +21,32 @@ import az.developia.bookshoppinggunelm.model.Book;
 @Controller
 public class BookController {
 
-	
 	@Autowired
 	private BookDAO bookDAO;
-	
+
 	@Autowired
 	private MySession mySession;
-	
-	@GetMapping(path="/books")
+
+	@GetMapping(path = "/books")
 	public String showBooks(Model model) {
-		//List<Book> books = bookDAO.findAll();
+		// List<Book> books = bookDAO.findAll();
 		List<Book> books = bookDAO.findAllByUsername(mySession.getUsername());
 		model.addAttribute("books", books);
-		model.addAttribute("username", "Username:  " +mySession.getUsername());		
+		model.addAttribute("username", "Username:  " + mySession.getUsername());
 		return "books";
 	}
-	@GetMapping(path="/books/new")
+
+	@GetMapping(path = "/books/new")
 	public String openNewBookPage(Model model) {
-		Book book=new Book();
+		Book book = new Book();
 		model.addAttribute("book", book);
 		model.addAttribute("header", "New Book");
-			return "new-book";
+		return "new-book";
 	}
-	
-	@PostMapping(path="/books/new-book-process")
-	public String saveBook(@Valid @ModelAttribute(name="book") Book book,
-			BindingResult result,Model model) {
-		if(result.hasErrors()) {
+
+	@PostMapping(path = "/books/new-book-process")
+	public String saveBook(@Valid @ModelAttribute(name = "book") Book book, BindingResult result, Model model) {
+		if (result.hasErrors()) {
 			return "new-book";
 		}
 		book.setImage("book.jpg");
@@ -55,32 +54,33 @@ public class BookController {
 		bookDAO.save(book);
 		List<Book> books = bookDAO.findAll();
 		model.addAttribute("books", books);
-	    return "redirect:/books";
+		return "redirect:/books";
 	}
-	
-	@GetMapping(path="/books/delete/{id}")
-	public String deleteBook(@PathVariable(name="id") Integer id,Model model) {
-		boolean bookExists=bookDAO.findById(id).isPresent();
-		if(bookExists) {
-		bookDAO.deleteById(id);}
-		else {}
+
+	@GetMapping(path = "/books/delete/{id}")
+	public String deleteBook(@PathVariable(name = "id") Integer id, Model model) {
+		boolean bookExists = bookDAO.findById(id).isPresent();
+		if (bookExists) {
+			bookDAO.deleteById(id);
+		} else {
+		}
 		List<Book> books = bookDAO.findAll();
 		model.addAttribute("books", books);
-			return "redirect:/books";
+		return "redirect:/books";
 	}
-	
-	@GetMapping(path="/books/edit/{id}")
-	public String editBook(@PathVariable(name="id") Integer id,Model model) {
-		Optional<Book> bookOptional=bookDAO.findById(id);
-		boolean bookExists=bookOptional.isPresent();
-		Book book =new Book();
-		if(bookExists) {
-		book=bookOptional.get();
+
+	@GetMapping(path = "/books/edit/{id}")
+	public String editBook(@PathVariable(name = "id") Integer id, Model model) {
+		Optional<Book> bookOptional = bookDAO.findById(id);
+		boolean bookExists = bookOptional.isPresent();
+		Book book = new Book();
+		if (bookExists) {
+			book = bookOptional.get();
+		} else {
 		}
-		else {}		
 		model.addAttribute("book", book);
 		model.addAttribute("header", "Edit The Book");
-			return "new-book";
+		return "new-book";
 	}
-	
+
 }
