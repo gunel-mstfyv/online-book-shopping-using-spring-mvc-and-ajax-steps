@@ -51,5 +51,4 @@ public class UserController {
 		userCreated=true;
 	    return "redirect:/show-login";
 	}
-
 }

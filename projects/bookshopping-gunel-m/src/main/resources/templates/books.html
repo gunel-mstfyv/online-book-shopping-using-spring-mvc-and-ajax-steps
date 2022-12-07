@@ -3,6 +3,13 @@
 <head>
 <meta charset="utf-8">
 <title>Books</title>
+<style>
+#username{
+display:inline-block;
+margin:0;
+font-size:24px;
+font-weight:bold;}
+</style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -26,6 +33,7 @@ $('#books-table').DataTable();
 <a class="btn btn-success" th:href="@{/books/new}" id="new-book-button">New Book</a>
 
 <a class="btn btn-primary" th:href="@{/home}">Main Page</a>
+<span id="username" th:text="${username}"></span>
 
 <div style="height:5px"></div>
 <table id="books-table" class="table table-hover table-bordered table-striped">

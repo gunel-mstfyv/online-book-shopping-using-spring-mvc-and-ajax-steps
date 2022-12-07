@@ -18,18 +18,21 @@ public class UserDAO {
 private DataSource dataSource;
 
 public boolean createUser(User user) {
-	boolean userExits=false;
+	boolean userExists=false;
 	try {
 		Connection conn= dataSource.getConnection();
-		PreparedStatement ps = conn.prepareStatement("select username from users where username=?");
-		ps.setString(1, user.getUsername());
-		
+		PreparedStatement ps = conn
+				.prepareStatement("select username from users where username=?");
+		ps.setString(1, user.getUsername());		
 		ResultSet rs = ps.executeQuery();
 		if(rs.next()) {
-			userExits=true;
+			userExists=true;
+			rs.close();
 			ps.close();
 		}
 		else {
+			rs.close();
+			ps.close();
 			ps=conn.prepareStatement("insert into users (username,password,enabled) values (?,?,?);");
 			ps.setString(1, user.getUsername());
 			ps.setString(2, "{noop}" +user.getPassword());
@@ -44,12 +47,12 @@ public boolean createUser(User user) {
 			ps.close();
 			
 		}	
-		rs.close();
+		
 		conn.close();
 		
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
-	return userExits;
+	return userExists;
 }
 }
