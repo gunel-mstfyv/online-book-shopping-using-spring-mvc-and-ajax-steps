@@ -35,7 +35,8 @@ border-radius:7px;
 .book-image{
 display:block;
 width:100%;
-background-color:blue;
+background-color:green;
+height:120px;
 }
 .book-name,.book-price,.book-description,.book-author,.book-page-count{
 display: block;
@@ -53,13 +54,13 @@ content: 'Description: ';}
 content: 'Author: ';}
 .book-page-count::before{
 content: 'Page Count: ';}
-.add-to-basket{
+.add-to-basket-btn{
 text-align:center;
 margin-top:5px;}
 .book-image>img{
 	width:100%;
 }
-#open-basket{
+#open-basket-btn{
 	position: fixed;
 	right: 20px;
 	bottom: 20px;
