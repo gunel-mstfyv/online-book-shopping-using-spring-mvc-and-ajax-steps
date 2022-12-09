@@ -8,21 +8,35 @@
 
 </head>
 <body>
+<!-- HTML BEGIN -->
 <div th:replace="menu::menu"></div>
 
 <div id="main-content">
 		
 </div>	
-<button id="open-basket-btn" class="btn btn-primary">Basket <span class="badge badge-light">0</span></button>
+<button id="open-basket-btn" class="btn btn-primary">Basket <span class="badge badge-light" id="basket-book-count">0</span></button>
 <input id="search-input" class="form-control" placeholder="Search"/>
-
+<!-- HTML END -->
 <script>
+//JAVASCRIPT BEGIN
+//REFRESH BEGIN
 var xht = new XMLHttpRequest();
+var booksArrayGlobal;
+var basketBooks=[];
+var basketBooksFromStorage=localStorage.getItem('basketBooks');
+if(basketBooksFromStorage==null){
+	localStorage.setItem('basketBooks','[]');}else{
+		basketBooks=JSON.parse(basketBooksFromStorage);
+}
+var openBasketButton=document.getElementById('open-basket-btn');
+var basketBookCount=document.getElementById('basket-book-count');
+basketBookCount.innerHTML=basketBooks.length;
+
 xht.onreadystatechange = function (){
 if(this.readyState == 4 && this.status ==200 ) {
 var responseJSON = this.responseText;
 var booksArray=JSON.parse(responseJSON);
-console.log(booksArray);
+booksArrayGlobal=booksArray;
 
 var mainContent=document.getElementById('main-content');
 var mainContentHTML="";
@@ -50,11 +64,39 @@ mainContent.innerHTML=mainContentHTML;
 };
 xht.open("GET", "/rest/books", true);
 xht.send();
+//REFRESH END
+//FUNCTIONS  BEGIN
 
 function addToBasket(bookId){
-	alert(bookId);
+	var bookExistsInBasket=false;
+	for(var i=0;i<basketBooks.length;i++){
+		var basketBook=basketBooks[i];
+		if(basketBook.book.id==bookId){
+			basketBook.count++;
+			bookExistsInBasket=true;
+			break;
+		}	
+	};
+	if(bookExistsInBasket){}
+	else{
+		for(var i=0;i<booksArrayGlobal.length;i++){
+			if(booksArrayGlobal[i].id==bookId){			
+			var basketBook={count:1,book:booksArrayGlobal[i]};
+			basketBooks.push(basketBook);
+			break;
+			}
+		}		
+	}
+	openBasketButton.style.display='none';
+	basketBookCount.innerHTML=basketBooks.length;
+	localStorage.setItem('basketBooks',JSON.stringify(basketBooks));
+	setTimeout(function(){	openBasketButton.style.display='block';
+},300);
+	
 };
 
+//FUNCTIONS  END
+//JAVASCRIPT END
 </script>
 </body>
 </html>
