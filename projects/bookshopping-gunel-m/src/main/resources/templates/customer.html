@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <title>Customer</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link th:href="@{/styles/customer.css}" rel="stylesheet"/>
 
@@ -14,8 +17,24 @@
 <div id="main-content">
 		
 </div>	
-<button id="open-basket-btn" class="btn btn-primary">Basket <span class="badge badge-light" id="basket-book-count">0</span></button>
+<button type="button" data-toggle="modal" data-target="#basketModal" id="open-basket-btn" class="btn btn-primary">Basket <span class="badge badge-light" id="basket-book-count">0</span></button>
 <input id="search-input" class="form-control" placeholder="Search"/>
+
+<div class="modal fade" id="basketModal">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h1 class="modal-title">Basket</h1>
+<button type="button" class="close" data-dismiss="modal">x</button>
+</div>
+<div class="modal-body">
+
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+</div>
+</div></div></div>
+
 <!-- HTML END -->
 <script>
 //JAVASCRIPT BEGIN
