@@ -42,7 +42,7 @@ book.author+"'>"+book.author+"</span>";
 mainContentHTML+="<span class='book-page-count' title='"+
 book.pageCount+"'>"+book.pageCount+"</span> ";
 mainContentHTML+="<div class='add-to-basket'><button "+
-"class='add-to-basket-btn btn btn-primary'>Add to basket</button></div>";
+"class='add-to-basket-btn btn btn-primary' onclick='addToBasket("+book.id+")'>Add to basket</button></div>";
 mainContentHTML+="</div></div>";
 }
 mainContent.innerHTML=mainContentHTML;
@@ -51,7 +51,9 @@ mainContent.innerHTML=mainContentHTML;
 xht.open("GET", "/rest/books", true);
 xht.send();
 
-
+function addToBasket(bookId){
+	alert(bookId);
+};
 
 </script>
 </body>
