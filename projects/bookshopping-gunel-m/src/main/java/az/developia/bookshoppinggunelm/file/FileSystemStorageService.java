@@ -6,7 +6,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.nio.file.StandardCopyOption;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,8 +58,7 @@ public class FileSystemStorageService implements StorageService {
 	
 
 	@Override
-	public Path load(String filename) {
-		
+	public Path load(String filename) {		
 		return null;
 	}
 	
@@ -73,7 +71,6 @@ public class FileSystemStorageService implements StorageService {
 
 	@Override
 	public void deleteAll() {
-		
 		
 	}
 
