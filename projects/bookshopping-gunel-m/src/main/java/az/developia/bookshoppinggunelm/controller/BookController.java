@@ -53,14 +53,19 @@ public class BookController {
 
 	@PostMapping(path = "/books/new-book-process")
 	public String saveBook(@Valid @ModelAttribute(name = "book") Book book,
-			@RequestParam(value = "imageFile", required=false) MultipartFile imageFile,
-			BindingResult result, Model model) {
+			BindingResult result,
+			@RequestParam(value = "imageFile", required=false) MultipartFile imageFile, Model model
+			) {
 		if (result.hasErrors()) {
 			return "new-book";
 		}
 		book.setImage("book.jpg");
 		book.setUsername(mySession.getUsername());
+		if(imageFile.isEmpty() && book.getId()!=null) {
+			book.setImage(bookDAO.findById(book.getId()).get().getImage());
+		} else {
 		book.setImage(storageService.store(imageFile));
+		}
 		bookDAO.save(book);
 		List<Book> books = bookDAO.findAll();
 		model.addAttribute("books", books);
